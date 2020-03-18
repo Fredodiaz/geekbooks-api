@@ -3,6 +3,9 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 
+// Routes
+const users = require('./routes/users');
+
 const app = express();
 
 // Body Parser Middleware
@@ -16,6 +19,9 @@ mongoose
     .connect(DB)
     .then(() => console.log('MongoDB connected'))
     .catch(err => console.log(err));
+
+// Use Routes
+app.use('/api/users', users);
 
 const port = process.env.PORT || 5000;
 
